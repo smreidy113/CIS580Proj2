@@ -8,10 +8,10 @@ opts = optimoptions(@lsqnonlin, 'Algorithm', 'levenberg-marquardt', 'TolX', 1e-6
 X = zeros(size(X0,1),3);
 
 for i=1:length(X0(:,1))
-    X(i,:) = lsqnonlin(@(X) func(X, P1, P2, x1(i,:), x2(i,:)), X0(i,:), [], [], opts);
+    X(i,:) = lsqnonlin(@(X) func_triang(X, P1, P2, x1(i,:), x2(i,:)), X0(i,:), [], [], opts);
 end
 
-function f = func(X, P1, P2, x1, x2)
+function f = func_triang(X, P1, P2, x1, x2)
 
 Xhom = [X 1]';
 

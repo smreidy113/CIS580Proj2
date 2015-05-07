@@ -26,11 +26,11 @@ for i=1:J
     params(I*7+(i-1)*3+3) = X(i,3);
 end
 
-optparams = lsqnonlin(@(params) func(params, K, Mx_bundle, My_bundle, V, I, J), params, [], [], opts);
+optparams = lsqnonlin(@(params) func_bund(params, K, Mx_bundle, My_bundle, V, I, J), params, [], [], opts);
 
 [Cset, Rset, Xset] = decodeParams(optparams, I, J);
 
-function f = func(params, K, Mx_bundle, My_bundle, V, I, J)
+function f = func_bund(params, K, Mx_bundle, My_bundle, V, I, J)
 
 [Cset, Rset, X] = decodeParams(params, I, J);
 

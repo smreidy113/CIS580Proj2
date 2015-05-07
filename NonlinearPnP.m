@@ -4,13 +4,13 @@ opts = optimoptions(@lsqnonlin, 'Algorithm', 'levenberg-marquardt', 'TolX', 1e-6
 
 cq0 = [C' R2q(R)'];
 
-cqo = lsqnonlin(@(cq) func(cq, K, X, x), cq0, [], [], opts);
+cqo = lsqnonlin(@(cq) func_pnp(cq, K, X, x), cq0, [], [], opts);
 
 C = cqo(1:3)';
 q = cqo(4:7)';
 R = q2R(q);
 
-function f = func(cq, K, X, x)
+function f = func_pnp(cq, K, X, x)
 
 C = cq(1:3)';
 q = cq(4:7)';
